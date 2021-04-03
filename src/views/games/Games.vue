@@ -108,7 +108,7 @@ export default {
   },
   activated() {
     if (window.scrollTop) {
-      animate(document.documentElement || document.body, {scrollTop: '0'}, 0, 'ease-out');
+      this.scrollToTop(0);
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -128,7 +128,7 @@ export default {
     },
     // 选中分类 并显示商品列表
     selectCategory(typeId, index) {
-      this.scrollToTop();
+      this.scrollToTop(0);
       this.active = index;
       this.typeId = typeId;
       this.productList = [];
@@ -159,10 +159,15 @@ export default {
         }
       });
     },
-    scrollToTop() {
-      let docB = document.documentElement || document.body
-      // 400ms内滚到顶部 scrollTop 顶部距离0
-      animate(docB, {scrollTop: '0'}, 400, 'ease-out');
+    scrollToTop(ms = 400) {
+      let docB;
+      if (document.documentElement.scrollTop) {
+        docB = document.documentElement;
+        animate(docB, {scrollTop: '0'}, ms, 'ease-out');
+      } else if (document.body.scrollTop) {
+        docB = document.body;
+        animate(docB, {scrollTop: '0'}, ms, 'ease-out');
+      }
     }
   }
 };

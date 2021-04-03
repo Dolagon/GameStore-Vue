@@ -137,9 +137,15 @@ export default {
       });
     },
     scrollToTop() {
-      let docB = document.documentElement || document.body;
-      // 400ms内滚到顶部 scrollTop 顶部距离0
-      animate(docB, {scrollTop: '0'}, 400, 'ease-out');
+      let docB;
+      if (document.documentElement.scrollTop) {
+        docB = document.documentElement;
+        // 400ms内滚到顶部 scrollTop 顶部距离0
+        animate(docB, {scrollTop: '0'}, 400, 'ease-out');
+      } else if (document.body.scrollTop) {
+        docB = document.body;
+        animate(docB, {scrollTop: '0'}, 400, 'ease-out');
+      }
     }
   }
 }

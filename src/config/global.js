@@ -39,8 +39,8 @@ export const showBack = callBack => {
 
     // 判断是否到达目标点
     const showBackFunc = ()=>{
-        // console.log(docB.scrollTop);
-        if (docB.scrollTop >= 200) {  // 往下滚动200显示
+        let doca = document.documentElement.scrollTop || document.body.scrollTop;
+        if (doca >= 200) {  // 往下滚动200显示
             callBack(true);
         } else {  // 小于200隐藏
             callBack(false);

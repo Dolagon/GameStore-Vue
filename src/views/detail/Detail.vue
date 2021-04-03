@@ -63,7 +63,7 @@ export default {
   mounted() {
     this.loadData();
     this.searchCollect();
-    animate(document.documentElement || document.body, {scrollTop: '0'}, 0, 'ease-out');
+    this.scrollToTop(0);
   },
   computed: {
     ...mapState(['userInfo', 'shopCart'])
@@ -150,6 +150,16 @@ export default {
       if (result.success_code === 200) {
         Toast('已取消');
         this.collected = false;
+      }
+    },
+    scrollToTop(ms = 400) {
+      let docB;
+      if (document.documentElement.scrollTop) {
+        docB = document.documentElement;
+        animate(docB, {scrollTop: '0'}, ms, 'ease-out');
+      } else if (document.body.scrollTop) {
+        docB = document.body;
+        animate(docB, {scrollTop: '0'}, ms, 'ease-out');
       }
     }
   }

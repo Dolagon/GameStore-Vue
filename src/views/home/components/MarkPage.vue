@@ -1,5 +1,5 @@
 <template>
-  <div class="toTopIconWrapper" @click="scrollToTop">
+  <div class="toTopIconWrapper" @click="scrollToTop(400)">
     <svg viewBox="0 0 88 88" class="icon toTopIcon">
       <g fill="none" fill-rule="evenodd">
         <circle cx="44" cy="44" r="43.5" stroke="#CCC" fill="#FFF"></circle>
