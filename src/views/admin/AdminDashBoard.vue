@@ -4,8 +4,10 @@
     <remote-css href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css" />
     <input type="checkbox" id="check">
     <label for="check">
-      <i class="fas fa-bars" id="btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
+      <!-- <i class="fas fa-bars" id="btn"></i> -->
+      <!-- <i class="fas fa-times" id="cancel"></i> -->
+      <i class="el-icon-s-operation" id="btn"></i>
+      <i class="el-icon-arrow-left" id="cancel"></i>
     </label>
     <div class="sidebar">
       <header style="margin-right: 30px;">Game Store</header>
@@ -20,7 +22,7 @@
 <!--      <div class="section-header"></div>-->
       <i @click="exit" ref="exit" class="el-icon-switch-button" id="btnLeave"></i>
       <div class="exit"></div>
-      <transition v-if="showPage" name="custom-classes-transition" enter-active-class="animated animate__fadeInDown" >
+      <transition v-if="showPage" name="custom-classes-transition" enter-active-class="animated animate__fadeIn" >
         <UserCenter v-if="showUserCenter" :admin_data="admin_data"></UserCenter>
         <SowingControl v-if="showSowingControl"></SowingControl>
         <ProductControl v-if="showProductControl"></ProductControl>

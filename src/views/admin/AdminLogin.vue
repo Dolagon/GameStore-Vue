@@ -15,7 +15,7 @@
           <el-form :model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
             <div class="right-main-form">
               <p>Login</p>
-              <p>Please enter your username and password to login</p>
+              <p>Please enter your username(admin) and password(123)</p>
               <el-form-item prop="user_name" style="margin-top: 30px;">
                 <el-input placeholder="username" type="text" v-model="ruleForm.user_name" autocomplete="off"></el-input>
               </el-form-item>

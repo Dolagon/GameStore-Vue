@@ -6,7 +6,7 @@
         <template #title>
           <p class="person-title">Profile</p>
           <div class="person-msg">
-            <img :src="src" alt="">
+            <img :src="src" />
             <p>{{ userInfo.real_name }}</p>
           </div>
         </template>
@@ -131,11 +131,15 @@ export default {
     width: 7rem;
     height: 7rem;
     border-radius: 50%;
-    padding: 0.2rem;
-    border: 0.2rem solid #fff;
+    padding: 0.1rem;
+    border: 0.1rem solid #fff;
+    background-color: #fff;
     background-image: url('./../../assets/loading.gif');
     background-repeat: no-repeat;
     background-position:center center;
+  }
+  #loading {
+    position: absolute;
   }
 }
 </style>
