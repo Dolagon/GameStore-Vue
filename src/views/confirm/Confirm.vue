@@ -97,7 +97,8 @@ export default {
           this.userInfo.token,
           this.productListServer,
           this.totalPrice,
-          this.orderCode
+          this.orderCode,
+          new Date(Date.now()).toLocaleString()
       );
       console.log(result);
       if (result.success_code === 200) {

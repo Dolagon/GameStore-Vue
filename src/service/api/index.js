@@ -66,7 +66,7 @@ export const delAllSelectedGoods = (user_id) => ajax(LOCAL_BASE_URL + '/api/cart
 
 // 5. 订单接口
 // 5.1 提交订单
-export const postOrder = (user_id, cart_shop, shop_price, order_code) => ajax(LOCAL_BASE_URL + '/api/order/post', {user_id, cart_shop, shop_price, order_code}, 'POST');
+export const postOrder = (user_id, cart_shop, shop_price, order_code, ctime) => ajax(LOCAL_BASE_URL + '/api/order/post', {user_id, cart_shop, shop_price, order_code, ctime}, 'POST');
 // 5.2 订单支付成功
 export const orderPaySuccess = (user_id, order_code) => ajax(LOCAL_BASE_URL + '/api/order/change_status', {user_id, order_code}, 'POST');
 // 5.3 查询订单

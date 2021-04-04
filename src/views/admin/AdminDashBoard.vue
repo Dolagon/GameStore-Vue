@@ -194,7 +194,7 @@ label #btn{
 
 label #cancel{
   z-index: 1111;
-  left: -195px;
+  left: -185px;
   top: 17px;
   font-size:30px;
   color: #0a5275;
@@ -213,7 +213,7 @@ label #cancel{
 }
 
 #check:checked ~ label #cancel{
-  left: 195px;
+  left: 185px;
 }
 
 #check:checked ~ section{

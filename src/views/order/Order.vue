@@ -20,9 +20,9 @@
         <div v-if="orderList.length !== 0" class="container">
           <!-- 商品列表 -->
           <van-list class="content">
-            <div class="content-item" v-for="(item, index) in orderList" :key="index" @click="goDetail(userInfo.token, item.order_code, item.ctime.slice(0, 22), item.order_status)">
+            <div class="content-item" v-for="(item, index) in orderList" :key="index" @click="goDetail(userInfo.token, item.order_code, item.ctime, item.order_status)">
               <div class="content-item-header">
-                <p>{{ item.ctime.slice(0, 22) }} 订单</p>
+                <p>{{ item.ctime }} 订单</p>
                 <p>{{ item.order_status === 'pay' ? '已完成' : '未付款' }} ></p>
               </div>
               <div class="content-item-main">
@@ -44,9 +44,9 @@
         <div v-if="completed.length !== 0" class="container">
           <!-- 商品列表 -->
           <van-list class="content">
-            <div class="content-item" v-for="(item, index) in completed" :key="index" @click="goDetail(userInfo.token, item.order_code, item.ctime.slice(0, 22), item.order_status)">
+            <div class="content-item" v-for="(item, index) in completed" :key="index" @click="goDetail(userInfo.token, item.order_code, item.ctime, item.order_status)">
               <div class="content-item-header">
-                <p>{{ item.ctime.slice(0, 22) }} 订单</p>
+                <p>{{ item.ctime }} 订单</p>
                 <p>{{ item.order_status === 'pay' ? '已完成' : '未付款' }} ></p>
               </div>
               <div class="content-item-main">
@@ -68,9 +68,9 @@
         <div v-if="undone.length !== 0" class="container">
           <!-- 商品列表 -->
           <van-list class="content">
-            <div class="content-item" v-for="(item, index) in undone" :key="index" @click="goDetail(userInfo.token, item.order_code, item.ctime.slice(0, 22), item.order_status)">
+            <div class="content-item" v-for="(item, index) in undone" :key="index" @click="goDetail(userInfo.token, item.order_code, item.ctime, item.order_status)">
               <div class="content-item-header">
-                <p>{{ item.ctime.slice(0, 22) }} 订单</p>
+                <p>{{ item.ctime }} 订单</p>
                 <p>{{ item.order_status === 'pay' ? '已完成' : '未付款' }} ></p>
               </div>
               <div class="content-item-main">

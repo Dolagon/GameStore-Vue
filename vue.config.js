@@ -17,7 +17,7 @@ module.exports = {
     //     port: 8080,
     //     proxy: {
     //         '/api': {
-    //             target: 'http://localhost:3002/web/xlmc',
+    //             target: 'http://localhost:3001/web/xlmc',
     //             changeOrigin: true,
     //             pathRewrite: {
     //                 '^/api': ''
