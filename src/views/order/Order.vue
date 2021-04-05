@@ -31,7 +31,7 @@
               </div>
               <div class="content-item-footer">
                 <p>共 {{ item.cart_shop.length }} 个商品</p>
-                <p>总价: <span>{{ item.shop_price }}</span></p>
+                <p>总价: <span>{{ item.shop_price | moneyFormat }}</span></p>
               </div>
             </div>
           </van-list>
@@ -55,7 +55,7 @@
               </div>
               <div class="content-item-footer">
                 <p>共 {{ item.cart_shop.length }} 个商品</p>
-                <p>总价: <span>{{ item.shop_price }}</span></p>
+                <p>总价: <span>{{ item.shop_price | moneyFormat }}</span></p>
               </div>
             </div>
           </van-list>
@@ -79,7 +79,7 @@
               </div>
               <div class="content-item-footer">
                 <p>共 {{ item.cart_shop.length }} 个商品</p>
-                <p>总价: <span>{{ item.shop_price }}</span></p>
+                <p>总价: <span>{{ item.shop_price | moneyFormat }}</span></p>
               </div>
             </div>
           </van-list>

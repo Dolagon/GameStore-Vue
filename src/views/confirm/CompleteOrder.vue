@@ -56,6 +56,7 @@
 <script>
 import {aliPay, orderPaySuccess} from "@/service/api";  // eslint-disable-line no-unused-vars
 import {mapState, mapMutations} from 'vuex';
+import { Dialog } from 'vant';
 
 export default {
   name: "CompleteOrder",
@@ -81,10 +82,17 @@ export default {
       // 发起支付交易
       let payRes = await aliPay(this.order_code, this.shop_price, str);
       console.log(payRes);
-      window.location.href = payRes.url;
-      console.log(this.order_code);
-      // 存入订单号
-      this.setOrderId(this.order_code);
+      Dialog.confirm({
+        title: '支付沙箱账号',
+        message: '账号:qfbovg3263@sandbox.com\n密码:111111',
+      }).then(() => {
+        window.location.href = payRes.url;
+        console.log(this.order_code);
+        // 存入订单号
+        this.setOrderId(this.order_code);
+      }).catch(() => {
+        console.log('账号:qfbovg3263@sandbox.com\n密码:111111');
+      });
     }
   }
 }
