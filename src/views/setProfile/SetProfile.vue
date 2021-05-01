@@ -18,6 +18,10 @@
         <span>昵称</span>
         <input v-model="real_name" type="text">
       </div>
+      <div class="message-phone">
+        <span>手机</span>
+        <span id="phone">{{ phone }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -34,12 +38,14 @@ export default {
       return {
         real_name: '',
         icon_url: '',
+        phone: '',
         src: ''
       }
   },
   mounted() {
     this.real_name = this.userInfo.real_name;
     this.icon_url = this.userInfo.icon_url;
+    this.phone = this.userInfo.phone;
     this.src = imgUrl + this.userInfo.icon_url;
   },
   computed: {
@@ -122,6 +128,14 @@ input {
   background-color: #fff;
   border: 1.5px solid #fff;
 }
+#phone {
+  width: 13.5rem;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  padding: 0.5rem 0.7rem;
+  background-color: #fff;
+  border: 1.5px solid #fff;
+}
 .message {
   padding-top: 1rem;
   width: 100%;
@@ -132,7 +146,15 @@ input {
   &-user {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
+    align-self: start;
+    margin-left: 1rem;
     border-bottom: 1px solid #bababa;
+  }
+  &-phone {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    align-self: start;
+    margin-left: 1rem;
   }
   span {
     margin-right: 1rem;

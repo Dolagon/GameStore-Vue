@@ -71,8 +71,15 @@ export default {
       value: '',
     }
   },
-  created() {
-    this.goLogin()
+  beforeRouteEnter (to, from, next) {
+    // console.log(from.name);
+    if (from.name === 'reset') window.loginPage = true;
+    else window.loginPage = false;
+    next();
+  },
+  mounted() {
+    this.goLogin();
+    if (window.loginPage) this.show = true;
   },
   methods: {
     signUp() {

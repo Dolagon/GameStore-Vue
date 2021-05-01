@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 module.exports = {
-    publicPath: "./",
+    publicPath: "/",
     configureWebpack: {
         //支持jquery
         plugins: [
@@ -18,19 +18,6 @@ module.exports = {
     //     proxy: {
     //         '/api': {
     //             target: 'http://localhost:3001/web/xlmc',
-    //             changeOrigin: true,
-    //             pathRewrite: {
-    //                 '^/api': ''
-    //             }
-    //         }
-    //     }
-    // }
-    // devServer: {
-    //     // 端口
-    //     port: 8080,
-    //     proxy: {
-    //         '/api': {
-    //             target: 'http://42.193.187.165:3001/web/xlmc',
     //             changeOrigin: true,
     //             pathRewrite: {
     //                 '^/api': ''

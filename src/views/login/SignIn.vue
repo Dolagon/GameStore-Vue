@@ -11,8 +11,8 @@
         <img v-else src="./images/close.png" width="20">
       </div>
     </section>
-    <p @click="warning">登陆时遇到问题？</p>
-    <van-button :disabled="disabled" :class="{btnActive:btnActive === 1}" @click="signIn">登陆</van-button>
+    <p style="problem" @click="$router.push('/reset')">登陆时遇到问题？</p>
+    <van-button :disabled="disabled" :class="{ btnActive:btnActive === 1 }" @click="signIn">登陆</van-button>
   </div>
 </template>
 
@@ -37,6 +37,7 @@ export default {
     }
   },
   mounted() {
+    // 设置返回键触发事件
     if (window.history && window.history.pushState) {
       history.pushState(null, null, document.URL);
       window.addEventListener('popstate', this.goBack, false);
@@ -81,9 +82,6 @@ export default {
       } else {
         this.inputType = 'text';
       }
-    },
-    warning() {
-      Notify({ type: 'warning', message: '未开通此项功能' });
     }
   },
   watch: {

@@ -25,7 +25,7 @@ export default {
   margin-top: 0.2rem;
   text-align: left;
   &-title {
-    margin: 0.6rem 0 0 0.2rem;
+    margin: 0.6rem 0 0 0.7rem;
   }
   //父元素
   ul {
@@ -37,6 +37,13 @@ export default {
   &-item {
     flex-basis: 45%;
     margin-top: 0.5rem;
+    p:nth-child(2) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   img {
     width: 9rem;

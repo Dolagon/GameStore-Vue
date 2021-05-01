@@ -1,9 +1,9 @@
 <template>
   <div class="detail">
     <div v-if="showLoading">
-      <van-nav-bar style="box-shadow: #cacaca 0 0 5px;"  :fixed=true title="详情" left-arrow @click-left="$router.go(-1)"></van-nav-bar>
-      <img :src="product.img" class="detail-img">
+      <van-nav-bar style="box-shadow: #cacaca 0 0 5px;"  :fixed=true title="详情" left-arrow @click-left="back"></van-nav-bar>
       <div class="detail-item">
+        <img :src="product.img" class="detail-item-img">
         <div class="detail-item-price">
           <span>{{ product.cur_price | moneyFormat }}</span>
           <span v-if="product.discount">{{ product.ori_price | moneyFormat }}</span>
@@ -46,10 +46,9 @@
 </template>
 
 <script>
-import {getProductById, addGoodsToCart, addCollect, inCollect, delCollect} from "@/service/api";
+import {getProductByIdRestful, getProductById, addGoodsToCart, addCollect, inCollect, delCollect} from "@/service/api";  // eslint-disable-line no-unused-vars
 import {Toast} from 'vant';
 import {mapState, mapMutations} from 'vuex';
-import {animate} from "@/config/global";
 
 export default {
   name: "Detail",
@@ -63,15 +62,18 @@ export default {
   mounted() {
     this.loadData();
     this.searchCollect();
-    this.scrollToTop(0);
   },
   computed: {
     ...mapState(['userInfo', 'shopCart'])
   },
   methods: {
     ...mapMutations(['ADD_GOODS', 'CANCEL_SINGER_GOODS']),
+    back() {
+      this.$router.back();
+    },
     async loadData() {
-      let result = await getProductById(this.$route.query.id);
+      // let result = await getProductById(this.$route.query.id);
+      let result = await getProductByIdRestful(this.$route.query.id);
       if (result.status === 200) {
         this.product = result.result;
         this.showLoading = true;
@@ -118,14 +120,13 @@ export default {
           goodsPrice: goods.cur_price
         });
         // 直接跳转确认订单页面
-        this.$router.push('/confirm');
+        this.$router.push('/dashboard/confirm');
       }
     },
     // 添加商品到愿望单
     async addCollect(goods) {
       if (this.userInfo.token) {
         let result = await addCollect(this.userInfo.token, goods._id, goods.title, goods.img, goods.cur_price);
-        console.log(result);
         if (result.success_code === 200) {
           Toast('已添加');
           this.collected = true;
@@ -137,29 +138,18 @@ export default {
     // 查询心愿单
     async searchCollect() {
       let result = await inCollect(this.userInfo.token, this.$route.query.id);
-      if (result.success_code === 200) {
+      if (result.message === '心愿单已存在改商品') {
         this.collected = true;
-      } else {
+      } else if (result.message === '未收藏改商品') {
         this.collected = false;
       }
     },
     // 根据id取消心愿单
     async delCollect() {
       let result = await delCollect(this.userInfo.token, this.$route.query.id);
-      console.log(result);
       if (result.success_code === 200) {
         Toast('已取消');
         this.collected = false;
-      }
-    },
-    scrollToTop(ms = 400) {
-      let docB;
-      if (document.documentElement.scrollTop) {
-        docB = document.documentElement;
-        animate(docB, {scrollTop: '0'}, ms, 'ease-out');
-      } else if (document.body.scrollTop) {
-        docB = document.body;
-        animate(docB, {scrollTop: '0'}, ms, 'ease-out');
       }
     }
   }
@@ -171,12 +161,22 @@ export default {
   color: black;
 }
 .detail {
-  &-img {
-    margin-top: 2.2rem;
-    width: 100%;
-    height: 10rem;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   &-item {
+    &-img {
+      margin-top: 2.2rem;
+      width: 100%;
+      height: 10rem;
+    }
     &-price {
       background-color: #ececec;
       height: 1.5rem;

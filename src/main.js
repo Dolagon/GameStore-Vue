@@ -19,6 +19,10 @@ import '@/assets/css/reset.css';
 import VueParticles from 'vue-particles';
 Vue.use(VueParticles);
 
+// 拷贝插件
+import VueClipboard from "vue-clipboard2";
+Vue.use(VueClipboard);
+
 // 引入全局组件库
 import '@/plugins/vant';
 import ElementUI from 'element-ui';
@@ -32,7 +36,7 @@ Vue.filter('moneyFormat', value => {
   return '¥' + Number(value).toFixed(1);
 });
 Vue.filter('titleFormat', value => {
-  return value.slice(0, 25);
+  return value.slice(0, 22);
 });
 Vue.filter('dateFormat', value => {
   const dt = new Date(value);

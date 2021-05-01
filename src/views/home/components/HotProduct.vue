@@ -1,8 +1,9 @@
 <template>
-  <div @click="$emit('goSpecial', 2)" class="variety">
-    <p class="variety-title">【精选】热门佳作必买</p>
+<!--  <div @click="$emit('goSpecial', 2)" class="variety">-->
+  <div @click="$emit('goSpecial', true)" class="variety">
+  <p class="variety-title">【精选】热门佳作必买</p>
       <div class="variety-box">
-        <p>热门大作必买</p>
+        <p>热门佳作必买</p>
         <van-count-down style="margin-left: 0.8rem;margin-top: 1rem;" :time="time">
           <template #default="timeData">
             <span class="block">{{ timeData.hours }}</span>
@@ -53,10 +54,10 @@ export default {
   margin-top: 0.2rem;
   text-align: left;
   &-title {
-    margin: 0.6rem 0 0.6rem 0.2rem;
+    margin: 0.6rem 0 0.6rem 0.7rem;
   }
   &-box {
-    width: 90%;
+    width: 94%;
     height: 7rem;
     position: relative;
     left: 50%;

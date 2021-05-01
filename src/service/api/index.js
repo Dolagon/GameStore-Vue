@@ -25,6 +25,8 @@ export const getProductPage = (type = '') => ajax(LOCAL_BASE_URL + '/api/product
 export const delProduct = (product_id) => ajax(LOCAL_BASE_URL + '/api/product/remove/' + product_id);
 // 根据id获取单个商品信息
 export const getProductById = (product_id) => ajax(LOCAL_BASE_URL + '/api/product/search/' + product_id);
+// 根据id获取商品 restful
+export const getProductByIdRestful = (product_id) => ajax(LOCAL_BASE_URL + '/api/product/searchItem', { product_id });
 // 搜索商品
 export const searchProduct = (keywords = '') => ajax(LOCAL_BASE_URL + '/api/product/searchKeywords', { keywords });
 // 根据id修改商品信息
@@ -49,6 +51,15 @@ export const userSingUp = (user_name, user_pwd, phone) => ajax(LOCAL_BASE_URL + 
 export const getUserInfo = () => ajax(LOCAL_BASE_URL + '/api/userinfo');
 // 2.5 退出登陆
 export const getLogOut = () => ajax(LOCAL_BASE_URL + '/api/logout');
+// 2.6 验证用户手机号
+export const verifyPhone = (user_name, phone) => ajax(LOCAL_BASE_URL + '/api/verify_phone', {user_name, phone}, 'POST');
+// 2.7 获取短信验证码
+export const getPhoneCode = (phone) => ajax(LOCAL_BASE_URL + '/api/send_code', {phone});
+// 2.8 验证验证码
+export const verifyCode = (phone, code) => ajax(LOCAL_BASE_URL + '/api/verify_code', {phone, code}, 'POST');
+// 2.9 修改用户密码
+export const changePwd = (user_name, password) => ajax(LOCAL_BASE_URL + '/api/change_pwd', {user_name, password}, 'POST');
+
 
 // 3. 购物车接口
 // 3.1 添加商品购物车
@@ -91,3 +102,10 @@ export const inCollect = (user_id, goods_id) => ajax(LOCAL_BASE_URL + '/api/coll
 export const uploadImg = (imgData, imgName, lastmodified) => ajax(LOCAL_BASE_URL + '/api/user_img', {imgData, imgName, lastmodified},  'POST');
 // 保存用户修改的信息
 export const userSave = (user_id, real_name, icon_url) => ajax(LOCAL_BASE_URL + '/api/user_set', {user_id, real_name, icon_url}, 'POST');
+
+// 添加关键词
+export const addKeyword = (user_id, keyword) => ajax(LOCAL_BASE_URL + '/api/history_word', {user_id, keyword}, 'POST');
+// 获取用户搜索历史
+export const getKeywords = (user_id) => ajax(LOCAL_BASE_URL + '/api/get_keyword/' + user_id);
+// 删除搜索历史
+export const delKeywords = (user_id) => ajax(LOCAL_BASE_URL + '/api/del_keyword/' + user_id);

@@ -1,5 +1,5 @@
 <template>
-  <div @click="$emit('goSpecial', 5)" class="variety">
+  <div @click="$emit('goScene', true)" class="variety">
     <p class="variety-title">【推荐】剧情精选</p>
     <div class="variety-box">
       <p>剧情精选</p>
@@ -53,10 +53,10 @@ export default {
   margin-top: 0.2rem;
   text-align: left;
   &-title {
-    margin: 0.6rem 0 0.6rem 0.2rem;
+    margin: 0.6rem 0 0.6rem 0.7rem;
   }
   &-box {
-    width: 90%;
+    width: 94%;
     height: 7rem;
     position: relative;
     left: 50%;

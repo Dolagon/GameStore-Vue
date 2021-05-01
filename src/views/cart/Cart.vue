@@ -83,14 +83,19 @@ export default {
       return `${this.button_text}(${total})`;
     },
     // 商品是否全选
-    isSelectedAll() {
-      let tag = this.goodsCount > 0;
-      Object.values(this.shopCart).forEach(goods => {
-        if (!goods.checked) {  // 有一个商品为非选中则取消全选
-          tag = false;
-        }
-      });
-      return tag;
+    isSelectedAll: {
+      get () {
+        let tag = this.goodsCount > 0;
+        Object.values(this.shopCart).forEach(goods => {
+          if (!goods.checked) {  // 有一个商品为非选中则取消全选
+            tag = false;
+          }
+        });
+        return tag;
+      },
+      set () {
+        return false;
+      }
     },
     // 是否禁用按钮
     disabled_btn() {
@@ -127,7 +132,7 @@ export default {
           this.controlDel();
         }
       } else {
-        this.$router.push('/confirm');
+        this.$router.push('/dashboard/confirm');
       }
     },
     // 单个商品选中个取消选中

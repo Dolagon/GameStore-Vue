@@ -26,7 +26,7 @@
               <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">Login</el-button>
               </el-form-item>
-              <a href="#" id="form-a1">Forget user_pwd</a>
+              <a href="#" id="form-a1">Forget password</a>
               <a href="#" id="form-a2">Register Account</a>
             </div>
           </el-form>
@@ -69,6 +69,7 @@ export default {
           });
         } else if (valid) {
           let result = await adminLogin(this.ruleForm.user_name, this.ruleForm.user_pwd);
+          console.log(result);
           if (result.success_code === 200) {
             window.adminLogin = true;
             alert('Welcom Back !');

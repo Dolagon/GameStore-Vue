@@ -6,15 +6,13 @@
       <van-tabbar-item to="/dashboard/cart" icon="shopping-cart">购物车</van-tabbar-item>
       <van-tabbar-item to="/dashboard/profile" icon="manager">我的</van-tabbar-item>
     </van-tabbar>
-    <transition :name="transitionName" mode="out-in">
-      <keep-alive>
-        <router-view class="view" v-if="$route.meta.keepAlive"></router-view>
-      </keep-alive>
-    </transition>
+
+    <keep-alive>
+      <router-view class="view" v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
     <transition :name="transitionName" mode="out-in">
       <router-view class="view" v-if="!$route.meta.keepAlive"></router-view>
     </transition>
-
   </div>
   <Login v-else></Login>
 </template>
@@ -34,7 +32,8 @@ export default {
     return {
       switch: false,
       active: Number(sessionStorage.getItem('tabBarActiveIndex')) || 0,
-      transitionName: ''
+      transitionName: '',
+      special: ''
     }
   },
   created() {
@@ -81,50 +80,31 @@ export default {
       sessionStorage.setItem('tabBarActiveIndex', val);
     },
     '$route' (to, from) {
-      const toIndex = to.meta.index;
-      const fromIndex = from.meta.index;
-      // 如果to索引大于from索引,判断为前进状态,反之则为后退状态
-      if (toIndex - fromIndex === 0) {
+      const toIndex = to.meta.navShow;
+      const fromIndex = from.meta.navShow;
+      // 主页面之间切换不加载动画效果
+      if (toIndex === true && fromIndex === true) {
         this.transitionName = '';
-      } else if (toIndex > fromIndex) {
-        this.transitionName = 'page-left';
       } else {
-        this.transitionName = 'page-right';
+        if (to.meta.index > from.meta.index) {
+          this.transitionName = 'router-left';
+        } else {
+          this.transitionName = 'router-right';
+        }
       }
-
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.view {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-.page-right-enter-active,
-.page-right-leave-active,
-.page-left-enter-active,
-.page-left-leave-active {
-  will-change: transform;
-  transition: all 0.5s;
-  position: absolute;
-}
-.page-right-enter {
-  opacity: 0;
-  transform: translate3d(0, -2rem, 0);
-}
-.page-right-leave-active {
-  opacity: 0;
-  transform: translate3d(0, 2rem, 0);
-}
-.page-left-enter {
-  opacity: 0;
-  transform: translate3d(0, 2rem, 0);
-}
-.page-left-leave-active {
-  opacity: 0;
-  transform: translate3d(0, -2rem, 0);
-}
+//.router-slider-enter-active, .router-slider-leave-active {
+//  will-change: transform;
+//  transition: all 0.5s;
+//  position: absolute;
+//}
+//.router-slider-enter, .router-slider-leave-active {
+//  transform: translate3d(2rem, 0, 0);
+//  opacity: 0;
+//}
 </style>

@@ -47,16 +47,28 @@
         label="实付"
         text-align="left"
         button-text="立即支付"
-        @submit="onSubmit"
+        @submit="showCode = true"
     >
     </van-submit-bar>
+    <van-popup v-model="showCode" position="top" :style="{ height: '20%' }">
+      <h4>支付账号</h4>
+      <p style="margin-top: -1rem;">账号: {{ ali_account }}</p>
+      <span
+          class="copy-btn"
+          v-clipboard:copy="ali_account"
+          v-clipboard:success="onCopy"
+          @click="aliAccountToPay"
+      >复制</span>
+      <br>
+      <p style="margin-top: 1rem;">密码: 111111</p>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import {aliPay, orderPaySuccess} from "@/service/api";  // eslint-disable-line no-unused-vars
 import {mapState, mapMutations} from 'vuex';
-import { Dialog } from 'vant';
+import {Dialog, Toast} from 'vant';  // eslint-disable-line no-unused-vars
 
 export default {
   name: "CompleteOrder",
@@ -67,7 +79,11 @@ export default {
       shop_price: this.$route.query.total_price,
       order_code: this.$route.query.order_code,
       goods_count: this.$route.query.goodsCount,
-      cart_shop: this.$route.query.cart_shop
+      cart_shop: this.$route.query.cart_shop,
+
+      ali_account: 'qfbovg3263@sandbox.com',
+      showCode: false,
+      goPay: false
     }
   },
   computed: {
@@ -75,24 +91,21 @@ export default {
   },
   methods: {
     ...mapMutations(['setOrderId']),
-    async onSubmit() {
+    async aliAccountToPay() {
+      this.showCode = false;
       let str = window.location.href;
       str = str.match(/(\S*)#/)[0];
       console.log(str);
       // 发起支付交易
       let payRes = await aliPay(this.order_code, this.shop_price, str);
       console.log(payRes);
-      Dialog.confirm({
-        title: '支付沙箱账号',
-        message: '账号:qfbovg3263@sandbox.com\n密码:111111',
-      }).then(() => {
-        window.location.href = payRes.url;
-        console.log(this.order_code);
-        // 存入订单号
-        this.setOrderId(this.order_code);
-      }).catch(() => {
-        console.log('账号:qfbovg3263@sandbox.com\n密码:111111');
-      });
+      window.location.href = payRes.url;
+      console.log(this.order_code);
+      // 存入订单号
+      this.setOrderId(this.order_code);
+    },
+    onCopy() {
+      Toast('内容已复制到剪切板');
     }
   }
 }
@@ -102,6 +115,42 @@ export default {
 ::v-deep .van-nav-bar .van-icon {
   color: black;
 }
+// 设置弹出层样式
+.van-popup {
+  h4 {
+    text-align: center;
+    margin-top: 0.6rem;
+  }
+  p {
+    position: absolute;
+    padding-left: 3rem;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  span {
+    position: absolute;
+    left: 70%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: -1rem;
+  }
+}
+.copy-btn {
+  margin-left: 1rem;
+  width: 3rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  background-color: black;
+  color: #fff;
+  border: 1px solid black;
+}
+.copy-btn:hover {
+  background-color: #fff;
+  color: black;
+}
+
 .container {
   margin-bottom: 3rem;
   overflow-y: scroll;

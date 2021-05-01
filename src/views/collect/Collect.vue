@@ -68,7 +68,6 @@ export default {
     // 获取用户心愿单
     async getCollectList() {
       let result = await getCollect(this.userInfo.token);
-      console.log(result);
       if (result.success_code === 200) {
         this.productList = result.data.reverse();
       } else {

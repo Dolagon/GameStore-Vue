@@ -6,27 +6,27 @@ export const showBack = callBack => {
     let oldScrollTop, requestFrame;
 
     // 2. 监听滚动
-    document.addEventListener('scroll', ()=>{
+    document.addEventListener('scroll', () => {
         showBackFunc();
     }, false);
 
     // 3. 监听触摸
-    document.addEventListener('touchstart', ()=>{
+    document.addEventListener('touchstart', () => {
         showBackFunc();
     }, {passive: true});
 
-    document.addEventListener('touchmove', ()=>{
+    document.addEventListener('touchmove', () => {
         showBackFunc();
     }, {passive: true});
 
-    document.addEventListener('touchend', ()=>{
+    document.addEventListener('touchend', () => {
         oldScrollTop = docB.scrollTop;
         moveEnd();
     }, {passive: true});
 
-    const moveEnd = ()=>{
+    const moveEnd = () => {
         // 系统处理动画帧率
-        requestFrame = requestAnimationFrame(()=>{
+        requestFrame = requestAnimationFrame(() => {
             if (docB.scrollTop !== oldScrollTop) {
                 oldScrollTop = docB.scrollTop;
                 moveEnd();
@@ -38,7 +38,7 @@ export const showBack = callBack => {
     };
 
     // 判断是否到达目标点
-    const showBackFunc = ()=>{
+    const showBackFunc = () => {
         let doca = document.documentElement.scrollTop || document.body.scrollTop;
         if (doca >= 200) {  // 往下滚动200显示
             callBack(true);
@@ -211,7 +211,7 @@ export const setStore = (name, content) => {
 /*
     本地化获取
 */
-export const getStore = (name) => {
+export const getStore = name => {
     if (!name) return;
     return window.localStorage.getItem(name);
 };
@@ -219,7 +219,7 @@ export const getStore = (name) => {
 /*
     本地化删除
 */
-export const removeStore = (name) => {
+export const removeStore = name => {
     if (!name) return;
     return window.localStorage.removeItem(name);
 };

@@ -105,7 +105,7 @@ export default {
         // 订单创建成功后删除 已经生成订单的商品
         await delAllSelectedGoods(this.userInfo.token);
         this.$router.push({
-          path: '/completeOrder',
+          path: '/dashboard/completeOrder',
           query: {
             order_code: order_code,
             total_price: total_price,
