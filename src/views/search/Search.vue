@@ -98,6 +98,7 @@ export default {
   },
   destroyed(){
     window.onpopstate = null;
+    window.scrollTopVal = null;
   },
   activated() {
     if (window.fromDetail) {
@@ -113,8 +114,9 @@ export default {
     listeningBack() {
       let that = this;
       window.onpopstate = function() {
-        if (that.$route.path === '/dashboard/home') {
+        if (that.$route.path === '/dashboard/home' || that.$route.path === '/dashboard/games') {
           if (!window.fromDetail) {
+            window.scrollTopVal = null;
             that.cancel();
           } else {
             if (that.runFunction === 2) {
@@ -160,8 +162,7 @@ export default {
       let result = await searchProduct(this.keywords);
       if (this.keywords === '') {
         Toast('请输入关键词搜索');
-      }
-      if (result.data.length > 0) {
+      } else if (result.data.length > 0) {
         this.showHistory = false;
         this.showRelevant = false;
         this.showProductList = true;
@@ -182,7 +183,7 @@ export default {
       this.relevantList = [];
       if (value) {
         let arr = await searchProduct(value);
-        console.log(arr);
+        // console.log(arr);
         if (arr.data.length !== 0) {
           arr.data.forEach(item => {
             this.relevantList.push(item.title);

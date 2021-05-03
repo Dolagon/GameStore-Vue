@@ -64,7 +64,7 @@ export default {
       disabled: false,  // 禁用下拉刷新
       loadingData: false,  // 底部加载
       loadingRefresh: false,  // 下拉刷新
-      finished: false // 数据是否加载完成
+      finished: false // 数据是否加载完成 完成不再触发加载
     }
   },
   mounted() {
@@ -81,6 +81,7 @@ export default {
   },
   destroyed(){
     window.onpopstate = null;
+    window.scrollTopVal = null;
   },
   methods: {
     // 监听返回键
@@ -121,8 +122,7 @@ export default {
     },
     // 获取商品列表
     async getProductList() {
-      this.start = this.productList.length * 2 / 10;
-      // 开始为数组长度
+      if (this.start === 1) this.start = 2;
       let result = await getProductList(this.start, this.limit, 2);
       // console.log(result);
       if (result.success_code === 200) {
@@ -130,7 +130,9 @@ export default {
           // 数组拼接添加数据
           this.productList = this.productList.concat(result.data);
         }
+        this.start++;
         this.showLoading = true;
+        this.loadingData = false;
       } else {
         console.log(result);
       }
@@ -183,7 +185,6 @@ export default {
   watch: {
     // 监视数据是否加载完
     productList(val) {
-      // console.log('p-length:', val.length);
       if (val.length === this.productLength) {
         this.finished = true;
       } else {

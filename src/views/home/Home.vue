@@ -5,7 +5,6 @@
         left-text="首页"
         class="nav-title"
         :fixed=true
-        @click-left="temp"
     >
       <van-icon @click="goSearch(true)" name="search" slot="right"></van-icon>
     </van-nav-bar>
@@ -112,9 +111,6 @@ export default {
     next();
   },
   methods: {
-    temp() {
-      console.log(this.disabled)
-    },
     async loadSowing() {
       let result = await getSowingList();
       if (result.success_code === 200) {
@@ -157,6 +153,10 @@ export default {
     },
     // 重新加载数据
     onRefresh() {
+      this.loadSowing();
+      this.loadDiscount();
+      this.loadNewProduct();
+      this.loadStateProduct();
       setTimeout(() => {
         this.loadingRefresh = false;
         Toast('刷新成功');

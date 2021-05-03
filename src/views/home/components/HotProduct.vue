@@ -63,7 +63,7 @@ export default {
     left: 50%;
     transform: translate(-50%, 0%);
     border-radius: 0.4rem;
-    background: url("images/red.jpg") no-repeat;
+    background: url("images/control.png") no-repeat;
     background-size: cover;
     color: white;
     p:nth-child(1) {

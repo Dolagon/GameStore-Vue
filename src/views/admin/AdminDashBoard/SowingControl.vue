@@ -89,7 +89,7 @@
                   </template>
                 </el-table-column>
 
-                <el-table-column align="center" label="操作">
+                <el-table-column fixed="right" align="center" label="操作" min-width="150px">
                   <template slot-scope="scope">
                     <!-- 编辑表单 -->
                     <!--            <EditForm :loadSowing="loadSowing" :sowing_id="sowing_id"></EditForm>-->

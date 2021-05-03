@@ -75,6 +75,7 @@ export default {
   },
   destroyed(){
     window.onpopstate = null;
+    window.scrollTopVal = null;
   },
   activated() {
     if (window.fromDetail) {
@@ -120,8 +121,7 @@ export default {
     },
     // 获取商品列表
     async getProductList() {
-      this.start = this.productList.length * 2 / 10;
-      // 开始为数组长度
+      if (this.start === 1) this.start = 2;
       let result = await getProductList(this.start, this.limit, 5);
       // console.log(result);
       if (result.success_code === 200) {
@@ -129,7 +129,9 @@ export default {
           // 数组拼接添加数据
           this.productList = this.productList.concat(result.data);
         }
+        this.start++;
         this.showLoading = true;
+        this.loadingData = false;
       } else {
         console.log(result);
       }

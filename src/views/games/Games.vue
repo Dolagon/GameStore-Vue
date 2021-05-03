@@ -132,8 +132,13 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (from.name === 'home') window.scrollTop = true;
-    else window.scrollTop = false;
+    if (from.name === 'home' || from.name === 'detail') {
+      window.scrollTop = true;
+      window.fromDetail = true;
+    } else {
+      window.scrollTop = false;
+      window.fromDetail = false;
+    }
     next();
   },
   mounted() {
@@ -170,7 +175,7 @@ export default {
     },
     // 获取商品列表
     async getProductList() {
-      this.start = this.productList.length * 2 / 10;
+      if (this.start === 1) this.start = 2;
       // 开始为数组长度
       let result = await getProductList(this.start, this.limit, this.typeId);
       if (result.success_code === 200) {
@@ -178,7 +183,9 @@ export default {
           // 数组拼接添加数据
           this.productList = this.productList.concat(result.data);
         }
+        this.start++;
         this.showLoading = true;
+        this.loadingData = false;
         // 显示顶部按钮并禁止下拉刷新
         showBack(status => {
           if (status) {
@@ -240,6 +247,7 @@ export default {
       document.removeEventListener("touchmove",mo,false);
     },
     goSearch(args) {
+      window.fromDetail = false;
       if (args) {
         this.stop();
         this.showSearch = true;
