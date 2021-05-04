@@ -45,7 +45,7 @@
 <script>
 import {mapState, mapMutations} from 'vuex';
 import {getLogOut} from "@/service/api";
-import { Notify } from 'vant';
+import { Notify } from 'vant';  // eslint-disable-line no-unused-vars
 import {imgUrl} from '@/config/port'
 import preventBack from "vue-prevent-browser-back";
 
@@ -76,13 +76,12 @@ export default {
       this.show = false;
       if (item.name === '退出登陆') {
         let result = await getLogOut();
-        console.log('退出登陆 API:', result);
+        // console.log('退出登陆 API:', result);
         if (result.success_code === 200) {
           // 清空本地数据
           this.RESET_USER_INFO();
           // 清空本地购物车
           this.CLEAR_CART();
-          Notify({ type: 'success', message: '已退出登陆' });
           this.$router.push('/login');
         }
       } else {

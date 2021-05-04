@@ -105,29 +105,44 @@ export default {
     }
   },
   mounted() {
-    console.log('userInfo:', this.userInfo.token);
+    // console.log('userInfo:', this.userInfo.token);
     this.getOrder();
+    if (window.history && window.history.pushState) {
+      history.pushState(null, null, document.URL);
+      window.addEventListener('popstate', this.goBack, false);
+    }
+  },
+  destroyed() {
+    window.removeEventListener('popstate', this.goBack, false);
   },
   computed: {
     ...mapState(['userInfo'])
   },
   methods: {
+    goBack(){
+      // 从完成订单页面过来重定向到个人中心
+      if (this.$route.query.completed) {
+        this.$router.replace({path: '/dashboard/profile'})
+      } else {
+        history.go(-1);
+      }
+    },
     // 获取订单
     async getOrder() {
       let result = await getOrder(this.userInfo.token);
-      console.log('all', result);
+      // console.log('all', result);
       if (result.success_code === 200) {
         this.orderList = result.data.reverse();
       }
 
       let willRes = await getOrder(this.userInfo.token, 'will');
-      console.log('willRes', willRes);
+      // console.log('willRes', willRes);
       if (willRes.success_code === 200) {
         this.undone = willRes.data.reverse();
       }
 
       let payRes = await getOrder(this.userInfo.token, 'pay');
-      console.log('payRes', payRes);
+      // console.log('payRes', payRes);
       if (result.success_code === 200) {
         this.completed = payRes.data.reverse();
       }

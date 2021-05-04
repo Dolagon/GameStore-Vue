@@ -98,13 +98,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//.router-slider-enter-active, .router-slider-leave-active {
-//  will-change: transform;
-//  transition: all 0.5s;
-//  position: absolute;
-//}
-//.router-slider-enter, .router-slider-leave-active {
-//  transform: translate3d(2rem, 0, 0);
-//  opacity: 0;
-//}
+
 </style>

@@ -159,6 +159,7 @@ export default {
       this.loadStateProduct();
       setTimeout(() => {
         this.loadingRefresh = false;
+        this.disabled = false;
         Toast('刷新成功');
       }, 1000);
     },

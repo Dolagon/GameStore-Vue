@@ -53,7 +53,7 @@ export default {
     },
     async signIn() {
       let result = await pwdLogin(this.loginUsername, this.loginPassword);
-      console.log(result);
+      // console.log(result);
       if (result.success_code === 200) {
         // 保存用户信息到本地 异步用 actions
         this.syncUserInfo(result.data);

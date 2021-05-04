@@ -159,18 +159,19 @@ export default {
     },
     // 选中分类 并显示商品列表
     selectCategory(typeId, index) {
+      this.getProductLength(typeId);
       this.scrollToTop(0);
       this.active = index;
       this.typeId = typeId;
-      this.getProductLength(this.typeId);
 
       this.productList = [];
       this.start = 0;
-      this.finished = false;
-      this.loadingData = false;
-
+      this.finished = false;  // 数据是否加载完成
+      this.loadingData = false;  // 底部加载
       this.showLoading = false;
+      this.disabled = false;  // 禁用下拉刷新
       this.getProductList();
+
       this.changeWaves();
     },
     // 获取商品列表
@@ -223,7 +224,6 @@ export default {
     goDetail(id) {
       // 将所选商品id传递给详情页
       this.$router.push({
-        // path: '/dashboard/games/detailGames',
         path: '/dashboard/detail',
         query: {
           id: id
@@ -270,11 +270,13 @@ export default {
   watch: {
     // 监视数据是否加载完
     productList(val) {
+      // console.log('this.typeId:', this.typeId);
       // console.log('v-length:', val.length);
       // console.log('p-length:', this.productLength);
       if (val.length === this.productLength) {
         this.finished = true;
       } else {
+        this.getProductLength(this.typeId);
         this.finished = false;
       }
     }

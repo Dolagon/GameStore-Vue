@@ -44,7 +44,12 @@ export default {
       sessionStorage.setItem('tabBarActiveIndex', 0);
     },
     goOrder() {
-      this.$router.push('/order');
+      this.$router.push({
+        path: '/order',
+        query: {
+          completed: true
+        }
+      });
       sessionStorage.setItem('tabBarActiveIndex', 3);
     }
   }
