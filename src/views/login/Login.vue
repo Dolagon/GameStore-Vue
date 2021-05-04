@@ -53,13 +53,11 @@
 <script>
 import animatex from 'animate.css';  // eslint-disable-line no-unused-vars
 import SignIn from "@/views/login/SignIn";
-import {Toast} from 'vant';  // eslint-disable-line no-unused-vars
+import {Toast} from 'vant';
 import SignUp from "@/views/login/SignUp";
-import preventBack from 'vue-prevent-browser-back';
 
 export default {
   name: "Login",
-  mixins: [preventBack],
   components: {
     SignIn,
     SignUp
@@ -80,6 +78,13 @@ export default {
     next();
   },
   mounted() {
+    if (this.$route.path !== '/login') {
+      Toast({
+        position: "bottom",
+        message: "请登录"
+      });
+      this.$router.push('/login');
+    }
     if (window.loginPage) this.show = true;
   },
   methods: {
@@ -119,6 +124,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
+  //background-image: url(images/02.jpg) ;
   background-color: #fff;
   background-attachment:fixed;
   background-repeat:no-repeat;

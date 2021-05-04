@@ -83,6 +83,7 @@ export default {
           // 清空本地购物车
           this.CLEAR_CART();
           this.$router.push('/login');
+          Notify({ type: 'success', message: '已退出登陆' });
         }
       } else {
         this.$router.push('/setProfile');
