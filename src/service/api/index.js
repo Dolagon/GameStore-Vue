@@ -1,7 +1,6 @@
 import ajax from './ajax'
 
 const LOCAL_BASE_URL = 'http://store.kaedea.ltd/web/xlmc';
-// const LOCAL_BASE_URL = 'http://localhost:3001/web/xlmc';
 // const LOCAL_BASE_URL = '/api';
 
 // 添加管理员

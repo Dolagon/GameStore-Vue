@@ -214,7 +214,7 @@ input {
     }
   }
   h3 {
-    margin-top: 2rem;
+    margin-top: 48px;
     width: 15.5rem;
     text-align: left;
     padding-bottom: 1rem;

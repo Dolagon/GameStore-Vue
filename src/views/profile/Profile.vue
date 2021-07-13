@@ -24,7 +24,7 @@
           <van-icon name="like-o" class="like-o" />
         </template>
       </van-cell>
-      <van-cell @click="showShare = true" title="设置">
+      <van-cell style="margin-bottom: 4rem" @click="showShare = true" title="设置">
         <template #right-icon>
           <van-icon name="setting-o" class="setting-o" />
         </template>

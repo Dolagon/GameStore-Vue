@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 .carousel {
-  margin-top: 3rem;
+  margin-top: 58px;
   &-swiper {
     &-content {
       text-align: center;

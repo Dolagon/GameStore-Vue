@@ -11,7 +11,7 @@
     ></van-nav-bar>
     <van-uploader :after-read="afterRead">
       <img :src="src" />
-      <p>点击上传</p>
+      <p style="font-size: 12px">点击上传</p>
     </van-uploader>
     <div class="message">
       <div class="message-user">

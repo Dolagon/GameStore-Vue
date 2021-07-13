@@ -35,7 +35,7 @@
       <!--底部通栏-->
       <van-submit-bar
           :disabled="disabled_btn"
-          style="margin-bottom: 2.2rem;"
+          style="margin-bottom: 45px;"
           :button-color="button_color"
           :price="totalPrice"
           text-align="left"

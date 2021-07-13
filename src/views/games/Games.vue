@@ -302,7 +302,7 @@ export default {
   opacity: 0;
 }
 .header {
-  margin-top: 2.2rem;
+  margin-top: 45px;
   position: fixed;
   width: 100%;
   z-index: 100;

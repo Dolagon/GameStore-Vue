@@ -165,7 +165,7 @@ export default {
 
 <style lang="scss" scoped>
 .van-tabs {
-  margin-top: 2.2rem;
+  margin-top: 48px;
 }
 ::v-deep .van-nav-bar .van-icon {
   color: black;

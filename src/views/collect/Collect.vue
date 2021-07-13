@@ -127,7 +127,7 @@ export default {
 }
 #del {
   background-color: #f1f1f1;
-  width: 3rem;
+  width: 4rem;
   height: 1.5rem;
   font-size: 0.6rem;
   border-radius: 1rem;

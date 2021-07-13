@@ -156,7 +156,7 @@ export default {
     transform: translate(-50%, -50%);
     background-color: #a163f7;
     border: none;
-    height: 2rem;
+    height: 35px;
     width: 15rem;
     border-radius: 0.4rem;
     color: #fff;
@@ -166,7 +166,7 @@ export default {
     transform: translate(-50%, -50%);
     background-color: #e5e5e5;
     border: none;
-    height: 2rem;
+    height: 35px;
     width: 15rem;
     border-radius: 0.4rem;
     color: #000158;
